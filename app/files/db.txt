@@ -1,1 +1,1 @@
-{"kokteiliai":{"kokteilis":{"name":"Rutos dizzly kokteilis","amount_ml":500,"abarot":11,"image":"images\/random.png"}}}
+{"kokteiliai":{"kokteilis":{"name":"draugas imete lsd","amount_ml":600,"abarot":0,"image":"images\/random.png"},"vynas":{"name":"x-failai","amount_ml":300,"abarot":13,"image":"images\/xfailai.jpg"},"dege":{"name":"MILK","amount_ml":500,"abarot":0,"image":"images\/milk.jpg"},"pinakolada":{"name":"Peni kolada","amount_ml":200,"abarot":15,"image":"images\/pina.jpg"}}}

@@ -15,7 +15,8 @@ Class Gerimas {
             $this->data = [
                 'name' => null,
                 'amount_ml' => null,
-                'abarot' => null
+                'abarot' => null,
+                'image' => null,
             ];
         } else {
             $this->setData($data);
