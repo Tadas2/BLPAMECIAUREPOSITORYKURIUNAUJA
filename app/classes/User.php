@@ -6,9 +6,9 @@ Class User {
 
     private $data;
 
-    const GAY = 'g';
-    const STRAIGHT = 's';
-    const BISEXUAL = 'b';
+    const ORIENTATION_GAY = 'g';
+    const ORIENTATION_STRAIGHT = 's';
+    const ORIENTATION_BISEXUAL = 'b';
     const GENDER_MALE = 'm';
     const GENDER_FEMALE = 'f';
 
@@ -29,7 +29,7 @@ Class User {
     }
 
     public function setUsername(string $username) {
-        $this->data['username'] = $username;
+        $this->data['user_name'] = $username;
     }
 
     public function setEmail(string $email) {
@@ -46,12 +46,8 @@ Class User {
         }
     }
 
-    /**
-     * Gets the name of given object.
-     * @return type string
-     */
     public function setOrientation($orientation) {
-        if (in_array($orientation, [$this::GAY, $this::STRAIGHT, $this::BISEXUAL])) {
+        if (in_array($orientation, [$this::ORIENTATION_GAY, $this::ORIENTATION_STRAIGHT, $this::ORIENTATION_BISEXUAL])) {
             $this->data['orientation'] = $orientation;
         }
     }
