@@ -149,4 +149,12 @@ Class FileDB {
             return false;
         }
     }
+    
+    public function getCount($table_name) {
+        if ($this->tableExists($table_name)) {
+            return count($this->data[$table_name]);
+        } else {
+            return false;
+        }
+    }
 }

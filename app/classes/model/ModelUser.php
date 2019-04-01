@@ -13,8 +13,8 @@ class ModelUser {
     /**
      * @var type string Name of a table
      */
-
     private $table_name;
+
     /**
      * @var type class FileDB
      */
@@ -122,4 +122,15 @@ class ModelUser {
             return false;
         }
     }
+
+    public function getCount() {
+        $table_count = $this->db->getCount($this->table_name);
+        if ($table_count) {
+            return count($table_count);
+        } else {
+            return 0;
+        }
+    }
+
+
 }
