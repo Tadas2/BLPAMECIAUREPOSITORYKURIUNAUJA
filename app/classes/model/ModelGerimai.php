@@ -1,39 +1,45 @@
 <?php
 
-namespace App\model;
+namespace App\Model;
+
+use App\Gerimas;
+use Core\FileDB;
 
 /**
- * Class for working between database class and "Gerimai" class.
+ * Class for working between database class and "Gerimas" class.
  */
-Class ModelGerimai {
+class ModelGerimai {
 
     /**
-     *
      * @var type string Name of a table
      */
-    private $table_name;
 
+    private $table_name;
     /**
-     *
-     * @var type Class FileDB class
+     * @var type class FileDB
      */
     private $db;
 
-    public function __construct(\Core\FileDB $db, $table_name) {
+    /**
+     * ModelGerimai constructor.
+     * @param FileDB $db
+     * @param $table_name
+     */
+    public function __construct(FileDB $db, $table_name) {
         $this->table_name = $table_name;
         $this->db = $db;
     }
 
     /**
-     * Loads the specific drink from given ID
+     * Loads the specific user from given ID
      * @param type string $id
-     * @return boolean|\App\Item\Gerimas object.
+     * @return Gerimas|bool
      */
     public function load($id) {
         $data_row = $this->db->getRow($this->table_name, $id);
 
         if ($data_row) {
-            return new \App\Item\Gerimas($data_row);
+            return new Gerimas($data_row);
         } else {
             return false;
         }
@@ -42,10 +48,10 @@ Class ModelGerimai {
     /**
      * Checks if row by this ID exists and Inserts specific row into given table and saves it.
      * @param type string $id
-     * @param \App\Item\Gerimas $gerimas Class
-     * @return boolean
+     * @param Gerimas $gerimas
+     * @return bool
      */
-    public function insert($id, \App\Item\Gerimas $gerimas) {
+    public function insert($id, Gerimas $gerimas) {
         if (!$this->db->getRow($this->table_name, $id)) {
             $this->db->setRow($this->table_name, $id, $gerimas->getData());
             $this->db->save();
@@ -59,10 +65,10 @@ Class ModelGerimai {
     /**
      * Checks if row by this ID exists and Updates specific row into given table and saves it.
      * @param type string $id
-     * @param \App\Item\Gerimas $gerimas Class
-     * @return boolean
+     * @param Gerimas $gerimas
+     * @return bool
      */
-    public function update($id, \App\Item\Gerimas $gerimas) {
+    public function update($id, Gerimas $gerimas) {
         if ($this->db->getRow($this->table_name, $id)) {
             $this->db->setRow($this->table_name, $id, $gerimas->getData());
             $this->db->save();
@@ -75,8 +81,8 @@ Class ModelGerimai {
 
     /**
      * Deletes given row by the ID and saves into the database.
-     * @param type string $id
-     * @return boolean
+     * @param $id
+     * @return bool
      */
     public function delete($id) {
         if ($this->db->getRow($this->table_name, $id)) {
@@ -91,42 +97,29 @@ Class ModelGerimai {
 
     /**
      * Loads all the rows from given table as array of objects.
-     * @return type array
+     * @return array
      */
     public function loadAll() {
-        $gerimu_masyvas = [];
+        $gerimas_array = [];
 
         foreach ($this->db->getRows($this->table_name) as $gerimas) {
-            $gerimu_masyvas[] = new \App\Item\Gerimas($gerimas);
+            $gerimas_array[] = new Gerimas($gerimas);
         }
 
-        return $gerimu_masyvas;
+        return $gerimas_array;
     }
 
     /**
      * Deletes all the rows from the given table, and saves into the database.
-     * @return boolean
+     * @return bool
      */
-    public function deleteRows() {
+    public function deleteAll() {
         if ($this->db->deleteRows($this->table_name)) {
             $this->db->save();
+
             return true;
         } else {
             return false;
         }
     }
-
-    /**
-     * Deletes whole given table and saves it into the database.
-     * @return boolean
-     */
-    public function deleteTable() {
-        if ($this->db->deleteTable($this->table_name)) {
-            $this->db->save();
-            return true;
-        } else {
-            return false;
-        }
-    }
-
 }

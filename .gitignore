@@ -1,5 +1,4 @@
-/package-lock.json
-/node_modules
-/nbproject
-/composer.lock
+.idea/
 vendor/
+nbproject/
+composer.lock
