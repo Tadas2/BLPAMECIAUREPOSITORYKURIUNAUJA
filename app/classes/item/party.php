@@ -34,11 +34,30 @@ class Party {
         }
     }
     public function getPureAlchoholPerUser() {
-        if($this->getUserCount > 0) {
-        return $this->getPureAlchoholTotal() / $this->getUserCount();
+        $user_cnt = $this->getUserCount();
+        if($user_cnt > 0) {
+        return $this->getPureAlchoholTotal() / $user_cnt;
         } else {
             return false;
         }
+    }
+    public function getPartyStatus() {
+        $pure_in_l_vodka = $this->getPureAlchoholPerUser() * 100 / 40;
+         if (getPureAlchoholPerUser() != false) {
+        if ($pure_in_l_vodka > 100) {
+            return self::STATUS_POOP;
+        } elseif ($pure_in_l_vodka > 300) {
+            return self::STATUS_SLOPPY;
+        } elseif ($pure_in_l_vodka > 500) {
+            return self::STATUS_GOOD;
+        } elseif ($pure_in_l_vodka > 700) {
+            return self::STATUS_FIRE;
+        } else {
+            return self::STATUS_VOMITTRON;
+        }
+         } else {
+             return false;
+         }
     }
 
 }
