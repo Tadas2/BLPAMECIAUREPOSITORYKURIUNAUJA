@@ -20,4 +20,10 @@ class Girlfriend extends Girl {
 
 }
 
+class Wife extends Girlfriend {
+    function pistiProta() {
+        return 'prisikai trusikus o man plaut tik as su ziedu';
+    }
+}
+
 ?>
