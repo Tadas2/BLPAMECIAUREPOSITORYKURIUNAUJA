@@ -11,5 +11,10 @@ class Girl {
     }
 
 }
+class Girlfriend extends Girl {
+    function pistiProta() {
+        return 'prisikai trusikus o man plaut';
+    }
+}
 
 ?>
