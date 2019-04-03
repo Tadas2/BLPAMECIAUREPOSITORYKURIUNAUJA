@@ -1,9 +1,11 @@
 <?php
 
 class SensorFartTemp extends App\abstracts\Sensor {
-
+    
+    
     public function read() {
-        return rand(365, 425) / 10;
+        $this->reading = rand(365, 425) / 10;
+        return $this->reading;
     }
 
 }
