@@ -9,7 +9,7 @@ class Cookie extends Abstracts\Cookie {
     }
 
     public function delete(): void {
-        
+        setcookie($this->name, '', time() - 3600);
     }
 
     public function exists(): bool {
@@ -33,7 +33,6 @@ class Cookie extends Abstracts\Cookie {
     }
 
     public function save($data, $expires_in = 3600): void {
-
         setcookie($this->name, json_encode($data), time() + $expires_in);
     }
 
