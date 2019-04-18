@@ -9,18 +9,16 @@ $connection = new Core\Database\Connection(
         ]);
 
 $pdo = $connection->getPDO();
-$sql = strtr("SELECT * FROM @db . @table WHERE (@gender = @gender_value) AND (@age = @age_value)", [
+$sql = strtr("UPDATE @db . @table SET @gender = @gender_value, @age = @age_value", [
   '@db' => Core\Database\SQLBuilder::schema('my_db'),
   '@table' => Core\Database\SQLBuilder::table('users'),
   '@gender' => Core\Database\SQLBuilder::column('gender'),
   '@age' => Core\Database\SQLBuilder::column('age'),
-  '@gender_value' => Core\Database\SQLBuilder::value('f'),
-  '@age_value' => Core\Database\SQLBuilder::value(16)
+  '@gender_value' => Core\Database\SQLBuilder::value('m'),
+  '@age_value' => Core\Database\SQLBuilder::value(rand(0, 100))
 ]);
 
-$query = $pdo->query($sql);
-$data = $query->fetchALL(PDO::FETCH_ASSOC);
-var_dump($data);
+$query = $pdo->exec($sql);
 //$users = [];
 //$last_gender = '';
 //while ($row = $query->fetch(PDO::FETCH_LAZY)) {
