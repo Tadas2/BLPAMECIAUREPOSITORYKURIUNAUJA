@@ -2,7 +2,7 @@
 
 namespace Core;
 
-class Cookie extends Abstracts\Cookie {
+class Cookie {
 
     public function __construct(string $name) {
         $this->name = $name;
@@ -17,25 +17,20 @@ class Cookie extends Abstracts\Cookie {
     }
 
     public function read(): array {
-
-        $json_cookie = [];
-
         if ($this->exists()) {
-            $json_cookie = json_decode($_COOKIE[$this->name], true);
-            if ($json_cookie !== null) {
-                return $json_cookie;
-            } else {
-                trigger_error('Nepaejo', E_USER_WARNING);
-                return $json_cookie;
+            $cookie_array = json_decode($_COOKIE[$this->name], true);
+            if ($cookie_array !== null) {
+                return $cookie_array;
             }
+
+            trigger_error("Nepavyko decodint cookie", E_WARNING);
         }
-        return $json_cookie;
+
+        return [];
     }
 
-    public function save($data, $expires_in = 3600): void {
+    public function save(array $data, int $expires_in = 3600) {
         setcookie($this->name, json_encode($data), time() + $expires_in);
     }
 
 }
-?>
-

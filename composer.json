@@ -1,5 +1,5 @@
 {
-    "name": "TadoProject",
+    "name": "RaugisProject",
     "autoload": {
         "psr-4": {
             "App\\": "app/classes",
