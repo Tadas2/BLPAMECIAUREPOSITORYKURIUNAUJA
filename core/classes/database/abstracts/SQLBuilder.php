@@ -41,7 +41,7 @@ abstract class SQLBuilder {
      * 
      * @param array $column_array ['column 1', 'column 2', ...]
      * @return string :column_1, :column_2, :column_3
-     */
+     */    
     abstract public static function binds($column_array): string;
 
     /**
@@ -59,7 +59,7 @@ abstract class SQLBuilder {
      * @param array $column_array ['column 1', 'column 2', ...]
      * @param string $delimiter Can be changed to 'AND', 'OR', etc...
      * @return string `column 1`=:column_1, `column 2`=:column_2,
-     */
+     */       
     abstract public static function columnsEqualBinds($column_array, $delimiter = ', '): string;
 
     /**
@@ -67,7 +67,7 @@ abstract class SQLBuilder {
      * 
      * @param string $value some value
      * @return string 'some value'
-     */
+     */  
     abstract public static function value($value): string;
 
     /**
@@ -76,6 +76,7 @@ abstract class SQLBuilder {
      * 
      * @param array $value_array ['value 1', 'value 2', ...]
      * @return string 'value 1', 'value 2'
-     */
+     */      
     abstract public static function values($value_array): string;
+
 }

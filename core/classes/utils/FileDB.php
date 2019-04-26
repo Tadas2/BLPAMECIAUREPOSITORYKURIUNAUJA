@@ -1,11 +1,11 @@
 <?php
 
-namespace Core;
+namespace Core\Utils;
 
 /**
  * Class for working with database.
  */
-Class FileDB {
+class FileDB {
 
     /**
      *
@@ -153,6 +153,14 @@ Class FileDB {
 
     public function rowExists($table, $row_id) {
         return isset($this->data[$table][$row_id]) ? true : false;
+    }
+
+    public function countRows($table) {
+        if ($this->tableExists($table)) {
+            return count($this->data[$table]);
+        } else {
+            return 0;
+        }
     }
 
 }

@@ -2,19 +2,16 @@
 
 namespace Core\User\Abstracts;
 
+/**
+ * Abstract Session
+ */
 abstract class Session {
 
-    /**
-     *
-     * @var \Core\User\Repository
-     */
-    protected $repo; //repository
-    protected $is_logged_in; //boolean
+    /** @var \Core\User\Repository */
+    protected $repo;
+    protected $is_logged_in;
 
-    /**
-     *
-     * @var \Core\User\User
-     */
+    /** @var \Core\User\User */
     protected $user;
 
     const LOGIN_SUCCESS = 1;

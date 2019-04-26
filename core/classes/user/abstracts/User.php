@@ -9,13 +9,13 @@ abstract class User {
     const ORIENTATION_GAY = 'g';
     const ORIENTATION_STRAIGHT = 's';
     const ORIENTATION_BISEXUAL = 'b';
+    
     const GENDER_MALE = 'm';
     const GENDER_FEMALE = 'f';
 
     public function __construct($data = null) {
         if (!$data) {
             $this->data = [
-                'username' => null,
                 'email' => null,
                 'full_name' => null,
                 'age' => null,
@@ -40,10 +40,6 @@ abstract class User {
 
     abstract public function setPassword(string $password);
 
-    public function setUserName(string $name) {
-        $this->data['username'] = $name;
-    }
-
     public function setEmail(string $email) {
         $this->data['email'] = $email;
     }
@@ -66,8 +62,8 @@ abstract class User {
 
     public function setOrientation(string $orientation) {
         if (in_array($orientation, [
-                    $this::ORIENTATION_GAY,
                     $this::ORIENTATION_STRAIGHT,
+                    $this::ORIENTATION_GAY,
                     $this::ORIENTATION_BISEXUAL])) {
             $this->data['orientation'] = $orientation;
 
@@ -77,10 +73,6 @@ abstract class User {
 
     public function setPhoto(string $photo) {
         $this->data['photo'] = $photo;
-    }
-
-    public function getUsername() {
-        return $this->data['username'];
     }
 
     public function getEmail() {
@@ -123,7 +115,6 @@ abstract class User {
     }
 
     public function setData(array $data) {
-        $this->setUsername($data['username'] ?? '');
         $this->setEmail($data['email'] ?? '');
         $this->setFullName($data['full_name'] ?? '');
         $this->setAge($data['age'] ?? null);
